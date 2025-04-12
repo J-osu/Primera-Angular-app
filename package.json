@@ -1,0 +1,11 @@
+{
+  "name": "primera-angular-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Josue",
+  "license": "ISC",
+  "description": "Primera App de Angular"
+}

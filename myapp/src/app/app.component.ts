@@ -1,13 +1,21 @@
 import {Component} from '@angular/core';
+import {HomeComponent} from './home/home.component';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [HomeComponent],
   template: `
-    <h1>Hola mundo</h1>
+    <main>
+      <header class="brand-name">
+        <img class="brand-logo" src="assets/logo.svg" alt="Logo" aria-hiddeb="true">
+      </header>
+      <section class="content">
+        <app-home></app-home>
+      </section>
+    </main>
   `,
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'default';
+  title = 'homes';
 }

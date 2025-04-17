@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
 import { HousingLocation } from '../housing-location';
+import { HousingService } from '../housing.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { HousingLocation } from '../housing-location';
   template: `
     <section>
       <form>
-        <input type="tex" placeholder="filtra por ciudad">
+        <input type="text" placeholder="filtra por ciudad">
         <button class="primary" type="button">Buscar</button>
       </form>
     </section>
@@ -20,38 +21,12 @@ import { HousingLocation } from '../housing-location';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  baseUrl: string = 'assets/images'; // Cambia esta ruta a la ubicación de tus fotos
-  housingLocationList: HousingLocation[] = [
-    {
-      "id": 0,
-      "name": "Test Home",
-      "city": "Test city",
-      "state": "ST",
-      "photo": `${this.baseUrl}/casa1.jpg`,
-      "availableUnits": 2,
-      "wifi": true,
-      "laundry": false
-  },
-  {
-    "id": 1,
-    "name": "Test Home 2",
-    "city": "Test city 2",
-    "state": "ST",
-    "photo": `${this.baseUrl}/casa1.jpg`,
-    "availableUnits": 3,
-    "wifi": true,
-    "laundry": false
-  },
-  {
+  baseUrl: string = 'assets/images';
+  housingLocationList: HousingLocation[] = [];
 
-    "id": 2,
-    "name": "Test Home 3",
-    "city": "Test city 3",
-    "state": "ST",
-    "photo": `${this.baseUrl}/casa1.jpg`,
-    "availableUnits": 4,
-    "wifi": true,
-    "laundry": false
+  housingService: HousingService = inject(HousingService);
+
+  constructor() {
+    this.housingLocationList = this.housingService.getAllHousingLocations();
   }
-  ];
 }

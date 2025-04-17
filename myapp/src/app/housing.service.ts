@@ -5,48 +5,18 @@ import { HousingLocation } from './housing-location';
   providedIn: 'root'
 })
 export class HousingService {
-  protected housingLocationList: HousingLocation[] = [
-    {
-      "id": 0,
-      "name": "Test Home",
-      "city": "Test city",
-      "state": "ST",
-      "photo": 'assets/images/casa1.jpg',
-      "availableUnits": 2,
-      "wifi": true,
-      "laundry": false
-  },
-  {
-    "id": 1,
-    "name": "Test Home 2",
-    "city": "Test city 2",
-    "state": "ST",
-    "photo": 'assets/images/casa2.jpg',
-    "availableUnits": 3,
-    "wifi": true,
-    "laundry": false
-  },
-  {
-
-    "id": 2,
-    "name": "Test Home 3",
-    "city": "Test city 3",
-    "state": "ST",
-    "photo": 'assets/images/casa3.jpg',
-    "availableUnits": 4,
-    "wifi": true,
-    "laundry": false
-  }
-  ];
+  url='http://localhost:3000/locations';
 
   constructor() { }
 
-  getAllHousingLocations(): HousingLocation[] {
-    return this.housingLocationList;
+  async getAllHousingLocations(): Promise<HousingLocation[]> {
+    const data = await fetch(this.url);
+    return await data.json()??[];
   }
 
-  getHousingLocationById(id: number): HousingLocation | undefined {
-    return this.housingLocationList.find((location) => location.id === id);
+  async getHousingLocationById(id: number): Promise<HousingLocation | undefined> {
+    const data = await fetch(`${this.url}/${id}`);
+    return await data.json()??{};
   }
 
   submitApplication(firstName: String, lastName: String, email: String){
